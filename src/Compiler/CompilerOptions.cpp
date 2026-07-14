@@ -57,6 +57,7 @@ bool enableReshapeCanonicalization;                    // common for both
 bool enablePositiveAxisCanonicalization;               // common for both
 bool enableExpandCanonicalization;                     // common for both
 bool enableReduceKeepdimsCanonicalization;             // common for both
+bool enableSliceCanonicalization;                      // common for both
 bool enableXFEONNXOpsetVerifier;                       // common for both
 bool enableSafeCodeGen;                                // common for both
 bool disableMemRefPrefetch;                            // common for both
@@ -378,6 +379,14 @@ static llvm::cl::opt<bool, true> enableExpandCanonicalizationOpt(
         "Reshape+Tile (rank increase) (default=false, i.e. the rewrite is "
         "disabled by default)."),
     llvm::cl::location(enableExpandCanonicalization), llvm::cl::init(false),
+    llvm::cl::cat(OnnxMlirCommonOptions));
+
+static llvm::cl::opt<bool, true> enableSliceCanonicalizationOpt(
+    "enable-slice-canonicalization",
+    llvm::cl::desc(
+        "Enable canonicalization of Slice through Slice/Tile/Pad/Concat "
+        "(default=false, i.e. the rewrites are disabled by default)."),
+    llvm::cl::location(enableSliceCanonicalization), llvm::cl::init(false),
     llvm::cl::cat(OnnxMlirCommonOptions));
 
 static llvm::cl::opt<bool, true> enableReduceKeepdimsCanonicalizationOpt(

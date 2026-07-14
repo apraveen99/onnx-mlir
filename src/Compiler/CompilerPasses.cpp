@@ -72,6 +72,7 @@ void configurePasses() {
   configurePositiveAxisCanonicalization(enablePositiveAxisCanonicalization);
   configureReduceKeepdimsCanonicalization(enableReduceKeepdimsCanonicalization);
   configureExpandCanonicalization(enableExpandCanonicalization);
+  configureSliceCanonicalization(enableSliceCanonicalization);
   configureQDQDataMovementCanonicalization(
       enableQDQDataMovementCanonicalization);
 #ifdef ONNX_MLIR_ENABLE_KRNL
@@ -283,6 +284,7 @@ void addPasses(mlir::OwningOpRef<ModuleOp> &module, mlir::PassManager &pm,
     opts.enableExpandCanonicalization = enableExpandCanonicalization;
     opts.enableReduceKeepdimsCanonicalization =
         enableReduceKeepdimsCanonicalization;
+    opts.enableSliceCanonicalization = enableSliceCanonicalization;
     opts.enableXFEONNXOpsetVerifier = enableXFEONNXOpsetVerifier;
     if (enableXMCPasses) {
       opts.hybrid.enableInstanceNormDecompose = false;

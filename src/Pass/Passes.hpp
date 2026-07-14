@@ -88,6 +88,16 @@ bool isQDQDataMovementCanonicalizationEnabled();
 // enabled.
 void configureExpandCanonicalization(bool enableExpandCanonicalization);
 
+// Configure whether Slice canonicalizations are enabled.
+void configureSliceCanonicalization(bool enableSliceCanonicalization);
+
+bool isSliceCanonicalizationEnabled();
+
+// Populate the (opt-in) Slice-through-Slice/Tile/Pad/Concat rewrite patterns.
+// Defined in Dialect/ONNX/Transforms/SliceOpOptimization.cpp.
+void populateSliceOpOptimizationPatterns(
+    mlir::RewritePatternSet &patterns, mlir::MLIRContext *context);
+
 void populateQDQDataMovementCanonicalizationPatterns(
     mlir::RewritePatternSet &patterns, mlir::PatternBenefit benefit = 1);
 
